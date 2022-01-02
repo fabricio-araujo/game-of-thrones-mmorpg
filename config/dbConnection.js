@@ -3,7 +3,7 @@ var mongo = require('mongodb');
 
 var connMongoDB = function() {
     var db = new mongo.Db(
-        'got', //db name
+        'got',
         new mongo.Server( //server connection: expected as an 3 params object
             'localhost', //a string with the server address where the db is
             27017, //the connection port
@@ -18,3 +18,4 @@ var connMongoDB = function() {
 module.exports = function() {
     return connMongoDB;
 }
+
