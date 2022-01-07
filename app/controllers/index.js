@@ -1,23 +1,25 @@
-module.exports.index = function(application, req, res) {
-    res.render('index', {validation: {}})
+module.exports.index = function(application, req, res){
+	res.render('index', {validacao: {}});
 }
 
-module.exports.autenticar = function(application, req, res) {
-    var dadosForm = req.body;
+module.exports.autenticar = function(application, req, res){
+	
+	var dadosForm = req.body;
 
-    req.assert('usuario', 'User cannot be empty').notEmpty();
-    req.assert('senha', 'Password cannot be empty').notEmpty();
+	req.assert('usuario', 'Usuário não de ser vazio').notEmpty();
+	req.assert('senha', 'Senha não de ser vazia').notEmpty();
 
-    var errors = req.validationErrors();
+	var erros = req.validationErrors();
 
-    if(errors) {
-        res.render('index', {validation: errors});
-        return;
-    }
+	if(erros){
+		res.render("index", {validacao:erros});
+		return;
+	}
 
-    var connection = application.config.dbConnection;
-    
-    var UsuariosDAO = new application.app.models.UsuariosDAO(connection);
+	var connection = application.config.dbConnection;
+	var UsuariosDAO = new application.app.models.UsuariosDAO(connection);
 
-    UsuariosDAO.autenticar(dadosForm, req, res);
+	UsuariosDAO.autenticar(dadosForm, req, res);
+
+	//res.send('tudo ok para criar a sessão');
 }

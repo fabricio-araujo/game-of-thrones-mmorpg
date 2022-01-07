@@ -31,17 +31,17 @@
 
 	    <div class="container">
 
-			<% if(validation.length > 0) { %>
-				<div class="alert alert-danger">
-					<strong>Please, check your info</strong>
-					<ul>
-						<% for(var i = 0; i < validation.length; i++) { %>
-							<li><%= validation[i].msg %></li>
-						<% } %>
-					</ul>
-				</div>
-			<% } %>
-	    		
+	    	<% if(validacao.length > 0) { %>
+	    		<div class="alert alert-danger">
+	    			<strong>Atenção!</strong>
+	    			<ul>
+	    				<% for(var i = 0; i < validacao.length; i++) { %>
+	    					<li><%=validacao[i].msg%></li>
+	    				<% } %>
+	    			</ul>
+	    		</div>
+	    	<% } %>
+
 			<form class="form-cadastro" action="/cadastrar" method="post">
 			
 				<div class="row">
@@ -62,7 +62,7 @@
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="senha" class="col-sm-2 col-form-label">Senha</label>
-							<input type="password" class="form-control" id="senha" name="senha" placeholder="Password">
+							<input type="password" value="<%=dadosForm.senha%>" class="form-control" id="senha" name="senha" placeholder="Password">
 						</div>
 					</div>
 				</div>

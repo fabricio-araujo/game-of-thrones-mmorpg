@@ -1,42 +1,42 @@
-//import framework express module
+/* importar o módulo do framework express */
 var express = require('express');
 
-//import consign module
+/* importar o módulo do consign */
 var consign = require('consign');
 
-//import body-parser module
+/* importar o módulo do body-parser */
 var bodyParser = require('body-parser');
 
-//import express-validator module
+/* importar o módulo do express-validator */
 var expressValidator = require('express-validator');
 
-//import express-session module
+/* importar o módulo do express-session */
 var expressSession = require('express-session');
 
-//init express object
+/* iniciar o objeto do express */
 var app = express();
 
-//variáveis 'view engine' e 'views' do express
+/* setar as variáveis 'view engine' e 'views' do express */
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
-//middleware express.static
+/* configurar o middleware express.static */
 app.use(express.static('./app/public'));
 
-//middleware body-parser
+/* configurar o middleware body-parser */
 app.use(bodyParser.urlencoded({extended: true}));
 
-//middleware express-validator
+/* configurar o middleware express-validator */
 app.use(expressValidator());
 
-//middleware express-session
+/* configura o middleware express-session */
 app.use(expressSession({
-	secret: 'fffaaasss',
+	secret: 'hakjehrgkjahjer',
 	resave: false,
 	saveUninitialized: false
 }));
 
-//routes autoload of models and controllers to app object
+/* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
 consign()
 	.include('app/routes')
 	.then('config/dbConnection.js')
@@ -44,5 +44,5 @@ consign()
 	.then('app/controllers')
 	.into(app);
 
-//export app
+/* exportar o objeto app */
 module.exports = app;

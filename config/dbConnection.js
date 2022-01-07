@@ -1,21 +1,21 @@
-//import mongodb
+/* importar o mongodb */
 var mongo = require('mongodb');
 
-var connMongoDB = function() {
-    var db = new mongo.Db(
-        'got',
-        new mongo.Server( //server connection: expected as an 3 params object
-            'localhost', //a string with the server address where the db is
-            27017, //the connection port
-            {} //an object with server config options
-        ),
-        {} // additional db config
-    );
-    return db;
+var connMongoDB = function(){
+	console.log('Entrou na função de conexão');
+	var db = new mongo.Db(
+		'got',
+		new mongo.Server(
+			'localhost', //string contendo o endereço do servidor
+			27017, //porta de conexão
+			{}
+		),
+		{}
+	);
+
+	return db;
 }
 
-//exports a function to be used by the consign autoloader
-module.exports = function() {
-    return connMongoDB;
+module.exports = function(){
+	return connMongoDB;
 }
-
