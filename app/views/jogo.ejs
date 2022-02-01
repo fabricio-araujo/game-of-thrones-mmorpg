@@ -17,8 +17,30 @@
 		<script>
 			$(document).ready( function(){
 
-				$('#btn_sair').click(function(){
+				$('#btn_sair').click(function() {
 					window.location.href = '/sair';
+				});
+
+				$('#btn_suditos').click(function() {
+					$('#msg_erros').hide();
+
+					$.ajax({
+						url: '/suditos',
+						method: 'get',
+						success: function(data) {
+							$('#acoes').html(data);
+						}
+					});
+				});
+
+				$('#btn_pergaminhos').click(function() {
+					$.ajax({
+						url: '/pergaminhos',
+						method: 'get',
+						success: function(data) {
+							$('#acoes').html(data);
+						}
+					});
 				});
 
 			});
@@ -37,6 +59,12 @@
 		</nav>
 
 	    <div class="container">
+
+			<% if(comando_invalido == 'S') { %>
+				<div class="alert alert-danger" id="msg_erros">
+					<strong>Operação Inválida, preencha todos os campos</strong>
+				</div>
+			<% } %>
 	    	
 			<div class="row">
 	    		<div class="col-sm-3 casa">
@@ -71,7 +99,7 @@
 			<div class="row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-9">
-					<div class="acoes"></div>					
+					<div class="acoes" id="acoes">Senhor, o que deseja fazer hoje?</div>					
 				</div>
 			</div>
 			
@@ -82,12 +110,12 @@
 			
 				<div class="row">
 					<div class="col-sm-1">
-						<img src="images/outros/suditos.jpg" title="Aldeões" alt="Aldeões"/>
+						<img src="images/outros/suditos.jpg" title="Aldeões" alt="Aldeões" id="btn_suditos"/>
 						<span><%=jogo.suditos%></span>
 					</div>
 					
 					<div class="col-sm-1">
-						<img src="images/outros/pergaminho.jpg" title="Pergaminhos" alt="Pergaminhos"/>
+						<img src="images/outros/pergaminho.jpg" title="Pergaminhos" alt="Pergaminhos" id="btn_pergaminhos"/>
 					</div>
 					
 					<div class="col-sm-8"></div>
